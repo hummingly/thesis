@@ -1,0 +1,415 @@
+/* OVERRIDE */
+
+* {
+    box-sizing: border-box;
+}
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+html {
+    line-height: 1.5; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+body {
+    font-family: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+        "Cantarell", "Open Sans", "Helvetica Neue", "Icons16", sans-serif;
+    font-size: 0.8125rem;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    overflow: hidden;
+}
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input {
+    font-family: inherit; /* 1 */
+    font-size: inherit; /* 1 */
+    line-height: 1.15; /* 1 */
+    margin: 0; /* 2 */
+}
+
+#app {
+    --accent-color: #6002ee;
+    --focus-color: #6002ee80;
+    --text-color: rgb(66, 66, 66);
+    --text-color-on-accent: white;
+    --text-color-strong: black;
+    --disabled-color: grey;
+    --background-color: rgb(248, 248, 248);
+    --background-color-active: rgb(221, 221, 221);
+
+    color: var(--text-color);
+    accent-color: var(--accent-color);
+    background-color: var(--background-color);
+}
+
+[role="toolbar"],
+[role="radiogroup"],
+[role="listbox"],
+[role="menubar"] {
+    display: flex;
+    align-items: center;
+}
+
+[role="toolbar"],
+[role="listbox"] {
+    padding: 2px;
+}
+
+[aria-orientation="horizontal"] {
+    font-size: 0.5rem;
+}
+
+[aria-orientation="horizontal"] button {
+    flex-direction: column;
+    justify-content: center;
+}
+
+[aria-orientation="horizontal"] .btn-label {
+    margin-block-start: 0.25rem;
+}
+
+[aria-orientation="vertical"] {
+    flex-direction: column;
+    align-items: unset;
+}
+
+[aria-orientation="vertical"] .btn-label {
+    margin-inline-start: 0.5rem;
+}
+
+/* Fallback for flexbox gap property support */
+[aria-orientation="horizontal"] > * + * {
+    margin-inline-start: 0.25rem;
+}
+
+[aria-orientation="vertical"] > * + * {
+    margin-block-start: 0.25rem;
+}
+
+canvas {
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.colour-preview {
+    background-image: url("../icons/checker-texture.svg");
+    background-size: 12.5%;
+    height: 2rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+.thumbnail {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.frame-index {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: var(--text-color);
+    color: white;
+    padding: 0 0.5rem;
+    font-weight: 600;
+    border-top-right-radius: 0.25rem;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+[role="listbox"][aria-orientation="horizontal"] {
+    overflow-y: hidden;
+}
+
+[role="option"] {
+    width: 4.5rem;
+    height: 4.5rem;
+    border: 2px solid var(--text-color);
+    border-radius: 0.25rem;
+    position: relative;
+    flex-shrink: 0;
+    background-image: url("../icons/checker-texture.svg");
+    background-size: 12.5% 12.5%;
+}
+
+[role="option"][aria-selected="true"] {
+    border: 2px solid var(--accent-color);
+}
+
+[role="option"][aria-selected="true"] .frame-index {
+    background-color: var(--accent-color);
+}
+
+input[type="number"] {
+    width: 8ch;
+}
+
+.colour-input {
+    display: grid;
+    grid-template-columns: min-content min-content min-content;
+    gap: 0.5rem;
+}
+
+[role="menubar"] * {
+    cursor: default;
+}
+
+[role="menuitem"] {
+    display: flex;
+    align-items: center;
+    min-height: 1.5rem;
+    border-radius: 0.25rem;
+    padding: 0 0.5rem;
+    white-space: nowrap;
+}
+
+a[role="menuitem"] {
+    text-decoration: none;
+    color: inherit;
+}
+
+[role="menu"],
+.dialog-content {
+    position: absolute;
+    background-color: white;
+    padding: 0.5rem;
+    min-width: 10rem;
+    margin-top: 0.25rem;
+    border: 0.0625rem solid var(--background-color-active);
+    border-radius: 0.25rem;
+    z-index: 2;
+}
+
+[role="menuitem"][aria-expanded="true"],
+[role="menuitem"]:hover,
+[role="menuitem"]:focus {
+    background-color: #eee;
+}
+
+[role="menuitem"][aria-expanded="false"] + [role="menu"],
+[role="dialog"][data-open="false"] {
+    display: none;
+}
+
+[role="dialog"] {
+    z-index: 2;
+    min-width: 300px;
+    min-height: 100px;
+}
+
+button {
+    min-width: 2rem;
+    min-height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    border: none;
+    background: transparent;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+button svg {
+    color: var(--accent-color);
+}
+
+:focus {
+    outline: none;
+    box-shadow: 0px 0px 0px 2px var(--focus-color);
+}
+
+button:hover,
+button:focus {
+    color: var(--text-color-strong);
+    background-color: rgb(232, 232, 232);
+}
+
+button:active {
+    color: var(--text-color-strong);
+    background-color: var(--background-color-active);
+}
+
+button[aria-checked="true"] {
+    color: var(--text-color-on-accent);
+    background-color: var(--accent-color);
+}
+
+button[aria-checked="true"] svg {
+    color: inherit;
+}
+
+button[aria-disabled="true"] {
+    color: var(--text-color);
+}
+
+button[aria-disabled="true"] svg {
+    color: var(--disabled-color);
+}
+
+/* Method to visually hide something but still
+/* keep it available to screen readers */
+.visually-hidden {
+    position: absolute;
+    top: auto;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    width: 1px;
+    height: 1px;
+    white-space: nowrap;
+}
+
+label {
+    font-size: 0.8em;
+}
+
+#preview {
+    background-color: white;
+}
+
+#preview-toolbar {
+    justify-content: center;
+}
+
+#preview-toolbar button {
+    padding: 0;
+    justify-content: center;
+}
+
+h2 {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    color: var(--text-color);
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+}
+
+#drawing-canvas {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    touch-action: none;
+}
+
+#guidelines {
+    pointer-events: none;
+    background-image: url("../icons/grid-texture.svg");
+    background-size: 6.25%;
+    opacity: 0.25;
+}
+
+label {
+    font-weight: 600;
+}
+
+svg {
+    fill: currentColor;
+}
+
+.container {
+    flex-grow: 1;
+    display: flex;
+}
+
+.container-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: var(--container-dimension);
+    max-height: var(--container-dimension);
+    margin: auto;
+}
+
+.container-content > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--container-dimension);
+    height: var(--container-dimension);
+}
+
+[data-layout] {
+    padding: 0 1rem;
+}
+
+[data-layout="menubar"] {
+    grid-area: menubar;
+    height: 2rem;
+    width: 100vw;
+    user-select: none;
+}
+
+[data-layout="tools"] {
+    grid-area: tools;
+}
+
+[data-layout="pixels"] {
+    grid-area: pixels;
+    display: flex;
+    flex-direction: column;
+}
+
+[data-layout="preview"] {
+    grid-area: preview;
+    display: flex;
+    flex-direction: column;
+}
+
+[data-layout="frames"] {
+    grid-area: frames;
+    width: 100vw;
+}
+
+#app {
+    display: grid;
+    grid-template-areas:
+        "menubar"
+        "tools"
+        "pixels"
+        "preview"
+        "frames";
+    grid-template-rows: 2rem 4rem minmax(100px, 2fr) minmax(100px, 1fr) 9rem;
+    width: 100vw;
+    height: 100vh;
+}
+
+@media screen and (min-height: 525px) and (min-aspect-ratio: 7 / 8) {
+    #app {
+        display: grid;
+        grid-template-areas:
+            "menubar menubar"
+            "tools preview"
+            "pixels preview"
+            "frames frames";
+        grid-template-rows: 2rem 4rem minmax(200px, 1fr) 9rem;
+        grid-template-columns: minmax(200px, 2fr) minmax(200px, 1fr);
+    }
+}
+
+@media screen and (min-width: 1000px) and (min-aspect-ratio: 7 / 8) {
+    #app {
+        display: grid;
+        grid-template-areas:
+            "menubar menubar menubar"
+            "tools pixels preview"
+            "frames frames frames";
+        grid-template-rows: 2rem minmax(0, 1fr) 9rem;
+        grid-template-columns: min-content minmax(250px, 2fr) minmax(250px, 1fr);
+    }
+}

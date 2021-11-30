@@ -1,0 +1,1 @@
+export type IconSprite = "box-arrow-left" | "box-arrow-right" | "eraser" | "eyedropper" | "front" | "pause" | "pencil" | "play" | "plus-square" | "skip-backward" | "skip-end" | "skip-forward" | "skip-start" | "trash";
